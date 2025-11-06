@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Code2, Cpu, Database, Sparkles, ArrowRight, Menu, X, ChevronDown } from 'lucide-react';
 import './index.css';
 
@@ -6,7 +6,8 @@ export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
+  const [visibleElements, setVisibleElements] = useState(new Set());
+const [currentProject, setCurrentProject] = useState(0);
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -15,6 +16,21 @@ export default function Portfolio() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleElements(prev => new Set([...prev, entry.target.dataset.animate]));
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '50px' }
+    );
+
+    document.querySelectorAll('[data-animate]').forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
   const projects = [
     {
       title: "Logiciel de Facturation Électronique",
@@ -28,6 +44,7 @@ export default function Portfolio() {
         "Génération de factures proforma",
         "Processus de paiement intégré",
         "Intégration Orange Money & PayPal",
+        "Signature électronique via l’API SentTrust",
         "Travail en équipe Agile/Scrum"
       ],
       color: "from-purple-500 to-pink-500",
@@ -314,7 +331,7 @@ export default function Portfolio() {
                   <div className="border-l-4 border-purple-500 pl-4">
                     <h4 className="font-bold text-lg">Développeuse Full-Stack</h4>
                     <p className="text-purple-400">NORD-SUD Technology</p>
-                    <p className="text-sm text-gray-400">Avril - Juillet 2025</p>
+                    <p className="text-sm text-gray-400">Avril 2025 - À ce jour</p>
                     <p className="text-gray-300 mt-2">Développement d'un logiciel de facturation électronique avec intégration de paiements (Orange Money, PayPal). Travail en équipe Agile/Scrum.</p>
                   </div>
                   
@@ -358,65 +375,7 @@ export default function Portfolio() {
           </div>
         </div>
       </section>
-
-      {/* Projects Section */}
-      <section id="projects" className="min-h-screen py-20 bg-slate-950/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl sm:text-5xl font-bold text-center mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            Mes Projets
-          </h2>
-          <p className="text-center text-gray-400 mb-16 max-w-2xl mx-auto">
-            Découvrez mes réalisations en développement web et IoT, du stage professionnel aux projets académiques
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                className="group bg-slate-900/50 backdrop-blur-lg rounded-2xl p-8 border border-slate-800 hover:border-purple-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10 transform hover:-translate-y-2"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className={`text-4xl bg-gradient-to-r ${project.color} bg-clip-text`}>
-                    {project.icon}
-                  </div>
-                  <span className="text-sm text-gray-400">{project.period}</span>
-                </div>
-
-                <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-                <p className={`text-sm mb-4 bg-gradient-to-r ${project.color} bg-clip-text text-transparent font-semibold`}>
-                  {project.type}
-                </p>
-                <p className="text-gray-300 mb-6">{project.description}</p>
-
-                <div className="mb-6">
-                  <h4 className="font-semibold mb-3 text-purple-400">Fonctionnalités clés :</h4>
-                  <ul className="space-y-2">
-                    {project.features.map((feature, i) => (
-                      <li key={i} className="flex items-start space-x-2 text-sm text-gray-300">
-                        <ArrowRight size={16} className="text-purple-400 mt-1 flex-shrink-0" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1 bg-purple-500/10 text-purple-300 rounded-full text-sm border border-purple-500/20"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
+ {/* Skills Section */}
       <section id="skills" className="min-h-screen py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl sm:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -487,6 +446,147 @@ export default function Portfolio() {
         </div>
       </section>
 
+
+{/* Projects Section */}
+
+<section id="projects" className="min-h-screen py-20 bg-slate-950/50 overflow-hidden">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 className="text-4xl sm:text-5xl font-bold text-center mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+      Mes Projets
+    </h2>
+    <p className="text-center text-gray-400 mb-16 max-w-2xl mx-auto">
+      Découvrez mes réalisations en développement web et IoT, du stage professionnel aux projets académiques
+    </p>
+
+    {/* Carousel Container */}
+    <div className="relative max-w-5xl mx-auto">
+      <div className="overflow-visible px-16 md:px-20">
+        <div 
+          className="flex transition-transform duration-700 ease-out"
+          style={{ 
+            transform: `translateX(calc(-${currentProject * 100}%))`,
+          }}
+        >
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              className={`flex-shrink-0 w-full px-6 transition-all duration-700 ${
+                index === currentProject 
+                  ? 'scale-100 opacity-100' 
+                  : 'scale-85 opacity-30 pointer-events-none'
+              }`}
+            >
+              <div className="group bg-slate-900/50 backdrop-blur-lg rounded-2xl p-8 border border-slate-800 hover:border-purple-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20">
+                <div className="flex items-start justify-between mb-4">
+                  <div className={`text-4xl bg-gradient-to-r ${project.color} bg-clip-text transition-transform duration-300 group-hover:scale-110`}>
+                    {project.icon}
+                  </div>
+                  <span className="text-sm text-gray-400 bg-slate-800/50 px-3 py-1 rounded-full">
+                    {project.period}
+                  </span>
+                </div>
+
+                <h3 className="text-2xl font-bold mb-2 group-hover:text-purple-400 transition-colors">
+                  {project.title}
+                </h3>
+                <p className={`text-sm mb-4 bg-gradient-to-r ${project.color} bg-clip-text text-transparent font-semibold`}>
+                  {project.type}
+                </p>
+                <p className="text-gray-300 mb-6 leading-relaxed">{project.description}</p>
+
+                <div className="mb-6">
+                  <h4 className="font-semibold mb-3 text-purple-400 flex items-center gap-2">
+                    <ArrowRight size={18} className="animate-pulse" />
+                    Fonctionnalités clés :
+                  </h4>
+                  <ul className="space-y-2 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
+                    {project.features.map((feature, i) => (
+                      <li 
+                        key={i} 
+                        className="flex items-start space-x-2 text-sm text-gray-300 transform transition-all duration-300 hover:translate-x-2"
+                      >
+                        <ArrowRight size={16} className="text-purple-400 mt-1 flex-shrink-0" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((tech, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 bg-purple-500/10 text-purple-300 rounded-full text-sm border border-purple-500/20 hover:bg-purple-500/20 hover:scale-105 transition-all duration-300 cursor-default"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Navigation Arrows */}
+      <button
+        onClick={() => setCurrentProject(prev => (prev === 0 ? projects.length - 1 : prev - 1))}
+        className="absolute left-0 top-1/2 -translate-y-1/2 bg-gradient-to-r from-purple-500 to-pink-500 p-4 rounded-full shadow-lg hover:shadow-purple-500/50 transition-all duration-300 hover:scale-110 z-10 group"
+        aria-label="Projet précédent"
+      >
+        <ArrowRight size={24} className="rotate-180 group-hover:-translate-x-1 transition-transform" />
+      </button>
+      
+      <button
+        onClick={() => setCurrentProject(prev => (prev === projects.length - 1 ? 0 : prev + 1))}
+        className="absolute right-0 top-1/2 -translate-y-1/2 bg-gradient-to-r from-purple-500 to-pink-500 p-4 rounded-full shadow-lg hover:shadow-purple-500/50 transition-all duration-300 hover:scale-110 z-10 group"
+        aria-label="Projet suivant"
+      >
+        <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
+      </button>
+
+      {/* Dots Navigation */}
+      <div className="flex justify-center gap-3 mt-12">
+        {projects.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentProject(index)}
+            className={`transition-all duration-300 rounded-full ${
+              index === currentProject
+                ? 'w-12 h-3 bg-gradient-to-r from-purple-500 to-pink-500'
+                : 'w-3 h-3 bg-slate-600 hover:bg-slate-500'
+            }`}
+            aria-label={`Aller au projet ${index + 1}`}
+          />
+        ))}
+      </div>
+
+     
+    </div>
+  </div>
+
+  <style jsx>{`
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(71, 85, 105, 0.1);
+      border-radius: 10px;
+    }
+    
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, #a855f7, #ec4899);
+      border-radius: 10px;
+    }
+    
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(to bottom, #9333ea, #db2777);
+    }
+  `}</style>
+</section>
+
+     
       {/* Contact Section */}
       <section id="contact" className="min-h-screen py-20 bg-slate-950/50 flex items-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -494,7 +594,7 @@ export default function Portfolio() {
             Travaillons Ensemble
           </h2>
           <p className="text-center text-gray-400 mb-16">
-            Je suis disponible pour de nouvelles opportunités. N'hésitez pas à me contacter !
+            Je suis ouverte pour de nouvelles opportunités. N'hésitez pas à me contacter !
           </p>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -554,7 +654,7 @@ export default function Portfolio() {
               <MapPin className="text-purple-400 mx-auto mb-4" size={32} />
               <h3 className="text-xl font-bold mb-2">Localisation</h3>
               <p className="text-gray-300">Dakar, Grand Yoff, Sénégal</p>
-              <p className="text-gray-400 text-sm mt-2">Disponible pour des missions sur place ou à distance</p>
+              <p className="text-gray-400 text-sm mt-2">N'hésitez pas à me contacter pour échanger de projets</p>
             </div>
           </div>
         </div>
@@ -594,6 +694,92 @@ export default function Portfolio() {
           </div>
         </div>
       </footer>
+<style jsx>{`
+  /* ... ton CSS existant ... */
+
+  /* 📱 Ajustements pour mobile */
+  @media (max-width: 768px) {
+    /* Réduction de la largeur du container du carrousel */
+    #projects .max-w-5xl {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    /* Réduction des marges internes */
+    #projects .group {
+      padding: 1.5rem !important;
+    }
+
+    /* Réduction de la taille des titres et textes */
+    #projects h3 {
+      font-size: 1.25rem !important; /* au lieu de 2xl */
+    }
+
+    #projects p {
+      font-size: 0.9rem !important;
+    }
+
+    /* Réduction du texte de type et période */
+    #projects span.text-sm {
+      font-size: 0.75rem !important;
+    }
+
+    /* Réduction du padding du carrousel */
+    #projects .overflow-visible {
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
+    }
+
+    /* Les boutons flèches deviennent plus petits et se déplacent un peu vers l’intérieur */
+    #projects button[aria-label="Projet précédent"],
+    #projects button[aria-label="Projet suivant"] {
+      padding: 0.5rem !important;
+      transform: scale(0.8);
+    }
+
+    /* Réduction des dots (indicateurs) */
+    #projects .flex.justify-center.gap-3 button {
+      width: 8px !important;
+      height: 8px !important;
+    }
+
+    #projects .flex.justify-center.gap-3 button.w-12 {
+      width: 20px !important;
+    }
+
+  }
+
+  @media (max-width: 480px) {
+    /* encore plus compact sur petit écran */
+    #projects h2 {
+      font-size: 1.8rem !important;
+    }
+
+    #projects p.text-center {
+      font-size: 0.85rem !important;
+    }
+
+    #projects .group {
+      padding: 1rem !important;
+    }
+
+    /* Empêcher les éléments de sortir de l’écran */
+    #projects .flex-shrink-0 {
+      width: 100% !important;
+    }
+
+    /* Centrer le contenu et réduire l'espace */
+    #projects .group .flex.items-start.justify-between {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    #projects .group h3 {
+      text-align: left;
+    }
+  }
+`}</style>
 
       <style jsx>{`
         @keyframes gradient {
