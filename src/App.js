@@ -35,7 +35,7 @@ const [currentProject, setCurrentProject] = useState(0);
     {
       title: "Logiciel de Facturation Électronique",
       type: "Projet en entreprise - NORD-SUD Technology",
-      period: "Avril - Juillet 2025",
+      period: "Avril 2025 - À ce jour",
       description: "Participation au développement d'un système complet de facturation électronique avec gestion des commandes, génération automatique de factures (proforma & finales), bons de commande/livraison.",
       tech: ["Symfony ", "MySQL"],
 
@@ -68,6 +68,22 @@ const [currentProject, setCurrentProject] = useState(0);
       icon: ""
     },
     {
+      title: "Système d'Arrosage Intelligent",
+      type: "Projet IoT & Web",
+      period: "2024-2025",
+      description: "Solution automatisée pour pépinière avec contrôle via interface web et programmation selon catégorie de plantes.",
+      tech: ["Raspberry Pi", "Node.js", "Angular", "MongoDB","Laravel", "RFID", "Capteurs Sol/Lumière"],
+      features: [
+        "Authentification par carte RFID ou code",
+        "Arrosage manuel via interface web",
+        "Programmation d'arrosage automatique selon l'heure voulu ",
+        "Surveillance temps réel (humidité, luminosité)",
+        "CRUD utilisateurs pour SuperAdmin"
+      ],
+      color: "from-teal-500 to-green-500",
+      icon: ""
+    },
+    {
       title: "Système de Pointage Intelligent",
       type: "Projet IoT & Web",
       period: "2024-2025",
@@ -82,6 +98,40 @@ const [currentProject, setCurrentProject] = useState(0);
         "Historique absences et retards (jour/semaine/mois)"
       ],
       color: "from-blue-500 to-cyan-500",
+      icon: ""
+    },
+    {
+      title: "Contrôle Température & Humidité",
+      type: "Projet IoT & Web",
+      period: "2024-2025",
+      description: "Système de surveillance pour magasin de stockage avec déclenchement automatique de ventilation et alertes.",
+      tech: ["Node.js", "MongoDB", "Arduino", "DHT Sensor", "LCD", "WebSocket"],
+      features: [
+        "Collecte automatique de température et d’humidité 3x/jour (10h, 14h, 17h)",
+        "Déclenchement auto ventilation si T > 27°C",
+        "Affichage LCD et interface web",
+        "Dashboard admin avec contrôle ",
+        "Historique hebdomadaire des températures",
+        "Images dynamiques selon humidité"
+      ],
+      color: "from-red-500 to-pink-500",
+      icon: ""
+    },
+    {
+      title: "Contrôle Température & Humidité",
+      type: "Projet IoT & Web",
+      period: "2024-2025",
+      description: "Système de surveillance pour magasin de stockage avec déclenchement automatique de ventilation et alertes.",
+      tech: ["Node.js", "MongoDB", "Arduino", "DHT Sensor", "LCD", "WebSocket"],
+      features: [
+        "Collecte automatique de température et d’humidité 3x/jour (10h, 14h, 17h)",
+        "Déclenchement auto ventilation si T > 27°C",
+        "Affichage LCD et interface web",
+        "Dashboard admin avec contrôle ",
+        "Historique hebdomadaire des températures",
+        "Images dynamiques selon humidité"
+      ],
+      color: "from-red-500 to-pink-500",
       icon: ""
     },
     {
@@ -102,39 +152,8 @@ const [currentProject, setCurrentProject] = useState(0);
       color: "from-amber-500 to-orange-500",
       icon: ""
     },
-    {
-      title: "Système d'Arrosage Intelligent",
-      type: "Projet IoT & Web",
-      period: "2024-2025",
-      description: "Solution automatisée pour pépinière avec contrôle via interface web et programmation selon catégorie de plantes.",
-      tech: ["Raspberry Pi", "Node.js", "Angular", "MongoDB","Laravel", "RFID", "Capteurs Sol/Lumière"],
-      features: [
-        "Authentification par carte RFID ou code",
-        "Arrosage manuel via interface web",
-        "Programmation d'arrosage automatique selon l'heure voulu ",
-        "Surveillance temps réel (humidité, luminosité)",
-        "CRUD utilisateurs pour SuperAdmin"
-      ],
-      color: "from-teal-500 to-green-500",
-      icon: ""
-    },
-    {
-      title: "Contrôle Température & Humidité",
-      type: "Projet IoT & Web",
-      period: "2024-2025",
-      description: "Système de surveillance pour magasin de stockage avec déclenchement automatique de ventilation et alertes.",
-      tech: ["Node.js", "MongoDB", "Arduino", "DHT Sensor", "LCD", "WebSocket"],
-      features: [
-        "Collecte automatique de température et d’humidité 3x/jour (10h, 14h, 17h)",
-        "Déclenchement auto ventilation si T > 27°C",
-        "Affichage LCD et interface web",
-        "Dashboard admin avec contrôle ",
-        "Historique hebdomadaire des températures",
-        "Images dynamiques selon humidité"
-      ],
-      color: "from-red-500 to-pink-500",
-      icon: ""
-    },
+    
+    
     {
       title: "École de la Réussite",
       type: "Projet Web Full Stack",
