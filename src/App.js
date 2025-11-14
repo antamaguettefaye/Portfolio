@@ -227,16 +227,16 @@ const [currentProject, setCurrentProject] = useState(0);
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center space-y-8">
             <div className="inline-block">
-  <div className="w-40 h-40 mx-auto bg-gradient-to-r from-purple-500 to-pink-500 rounded-full p-1 animate-spin-slow">
-    <div className="w-full h-full bg-white rounded-full overflow-hidden flex items-center justify-center">
-      <img 
-        src="/logo.png" 
-        alt="Anta Maguette Faye" 
-        className="w-full h-full object-cover"
-      />
-    </div>
-  </div>
-</div>
+            <div className="w-40 h-40 mx-auto bg-gradient-to-r from-purple-500 to-pink-500 rounded-full p-1 animate-spin-slow">
+              <div className="w-full h-full bg-white rounded-full overflow-hidden flex items-center justify-center">
+                <img 
+                  src="/logo.png" 
+                  alt="Anta Maguette Faye" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
             
             <div className="space-y-4">
               <h1 className="text-5xl sm:text-7xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent animate-gradient">
