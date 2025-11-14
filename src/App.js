@@ -227,12 +227,16 @@ const [currentProject, setCurrentProject] = useState(0);
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center space-y-8">
             <div className="inline-block">
-              <div className="w-40 h-40 mx-auto bg-gradient-to-r from-purple-500 to-pink-500 rounded-full p-1 animate-spin-slow">
-                <div className="w-full h-full bg-slate-950 rounded-full flex items-center justify-center text-6xl font-bold">
-                  AF
-                </div>
-              </div>
-            </div>
+  <div className="w-40 h-40 mx-auto bg-gradient-to-r from-purple-500 to-pink-500 rounded-full p-1 animate-spin-slow">
+    <div className="w-full h-full bg-white rounded-full overflow-hidden flex items-center justify-center">
+      <img 
+        src="/logo.png" 
+        alt="Anta Maguette Faye" 
+        className="w-full h-full object-cover"
+      />
+    </div>
+  </div>
+</div>
             
             <div className="space-y-4">
               <h1 className="text-5xl sm:text-7xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent animate-gradient">
@@ -694,89 +698,166 @@ const [currentProject, setCurrentProject] = useState(0);
           </div>
         </div>
       </footer>
-<style jsx>{`
-  /* ... ton CSS existant ... */
-
-  /* 📱 Ajustements pour mobile */
+    <style jsx>{`
+  /* 📱 CORRECTIONS RESPONSIVE MOBILE */
   @media (max-width: 768px) {
-    /* Réduction de la largeur du container du carrousel */
-    #projects .max-w-5xl {
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
+    /* Container principal du carrousel */
+    #projects .relative.max-w-5xl {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
 
-    /* Réduction des marges internes */
-    #projects .group {
-      padding: 1.5rem !important;
-    }
-
-    /* Réduction de la taille des titres et textes */
-    #projects h3 {
-      font-size: 1.25rem !important; /* au lieu de 2xl */
-    }
-
-    #projects p {
-      font-size: 0.9rem !important;
-    }
-
-    /* Réduction du texte de type et période */
-    #projects span.text-sm {
-      font-size: 0.75rem !important;
-    }
-
-    /* Réduction du padding du carrousel */
+    /* Zone de défilement avec padding réduit */
     #projects .overflow-visible {
-      padding-left: 0.5rem !important;
+      padding-left: 3rem !important;
+      padding-right: 3rem !important;
+    }
+
+    /* Espacements internes des cartes */
+    #projects .flex-shrink-0 {
+      padding-left: 0.25rem !important;
+      padding-right: 0.25rem !important;
+    }
+
+    /* Carte projet */
+    #projects .group {
+      padding: 1.25rem !important;
+    }
+
+    /* Titres et textes réduits */
+    #projects .group h3 {
+      font-size: 1.125rem !important;
+      line-height: 1.4 !important;
+    }
+
+    #projects .group p {
+      font-size: 0.875rem !important;
+      line-height: 1.5 !important;
+    }
+
+    /* Liste des fonctionnalités - FIX PRINCIPAL */
+    #projects .max-h-48 {
+      max-height: 10rem !important;
+      overflow-y: auto !important;
+    }
+
+    #projects .max-h-48 li {
+      font-size: 0.8rem !important;
+      line-height: 1.3 !important;
       padding-right: 0.5rem !important;
     }
 
-    /* Les boutons flèches deviennent plus petits et se déplacent un peu vers l’intérieur */
-    #projects button[aria-label="Projet précédent"],
-    #projects button[aria-label="Projet suivant"] {
-      padding: 0.5rem !important;
-      transform: scale(0.8);
+    #projects .max-h-48 svg {
+      width: 14px !important;
+      height: 14px !important;
+      margin-top: 0.15rem !important;
     }
 
-    /* Réduction des dots (indicateurs) */
+    /* Tags technologies */
+    #projects .flex-wrap span {
+      font-size: 0.7rem !important;
+      padding: 0.25rem 0.5rem !important;
+    }
+
+    /* Flèches navigation */
+    #projects button[aria-label*="Projet"] {
+      padding: 0.65rem !important;
+      width: 2.5rem !important;
+      height: 2.5rem !important;
+    }
+
+    #projects button[aria-label*="Projet"] svg {
+      width: 18px !important;
+      height: 18px !important;
+    }
+
+    /* Dots indicateurs */
+    #projects .flex.justify-center.gap-3 {
+      gap: 0.5rem !important;
+      margin-top: 2rem !important;
+    }
+
     #projects .flex.justify-center.gap-3 button {
-      width: 8px !important;
-      height: 8px !important;
+      width: 6px !important;
+      height: 6px !important;
     }
 
     #projects .flex.justify-center.gap-3 button.w-12 {
-      width: 20px !important;
+      width: 24px !important;
+      height: 6px !important;
     }
 
-  }
-
-  @media (max-width: 480px) {
-    /* encore plus compact sur petit écran */
+    /* En-tête de section */
     #projects h2 {
-      font-size: 1.8rem !important;
+      font-size: 2rem !important;
+      margin-bottom: 0.75rem !important;
     }
 
     #projects p.text-center {
-      font-size: 0.85rem !important;
+      font-size: 0.875rem !important;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+      margin-bottom: 3rem !important;
+    }
+
+    /* Badge période */
+    #projects .group span.bg-slate-800\/50 {
+      font-size: 0.7rem !important;
+      padding: 0.25rem 0.5rem !important;
+    }
+
+    /* Icône et en-tête projet */
+    #projects .group .flex.items-start.justify-between {
+      margin-bottom: 0.75rem !important;
+    }
+
+    #projects .group .text-4xl {
+      font-size: 2rem !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    /* Très petits écrans */
+    #projects .overflow-visible {
+      padding-left: 2.5rem !important;
+      padding-right: 2.5rem !important;
     }
 
     #projects .group {
       padding: 1rem !important;
     }
 
-    /* Empêcher les éléments de sortir de l’écran */
-    #projects .flex-shrink-0 {
-      width: 100% !important;
-    }
-
-    /* Centrer le contenu et réduire l'espace */
-    #projects .group .flex.items-start.justify-between {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.5rem;
-    }
-
     #projects .group h3 {
-      text-align: left;
+      font-size: 1rem !important;
+    }
+
+    #projects .group p {
+      font-size: 0.8rem !important;
+    }
+
+    #projects .max-h-48 {
+      max-height: 8rem !important;
+    }
+
+    #projects .max-h-48 li {
+      font-size: 0.75rem !important;
+    }
+
+    #projects button[aria-label*="Projet"] {
+      padding: 0.5rem !important;
+      width: 2rem !important;
+      height: 2rem !important;
+    }
+
+    #projects h2 {
+      font-size: 1.75rem !important;
+    }
+  }
+
+  /* Scrollbar personnalisée pour mobile */
+  @media (max-width: 768px) {
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px !important;
     }
   }
 `}</style>
@@ -797,9 +878,7 @@ const [currentProject, setCurrentProject] = useState(0);
           to { transform: rotate(360deg); }
         }
         
-        .animate-spin-slow {
-          animation: spin-slow 8s linear infinite;
-        }
+      
       `}</style>
     </div>
   );
