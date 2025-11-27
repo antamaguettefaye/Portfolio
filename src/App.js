@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Code2, Cpu, Database, Sparkles, ArrowRight, Menu, X, ChevronDown } from 'lucide-react';
 import './index.css';
+import { Analytics } from "@vercel/analytics/react";
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('home');
@@ -609,7 +610,8 @@ const [currentProject, setCurrentProject] = useState(0);
   `}</style>
 </section>
 
-     
+           <Analytics />
+
       {/* Contact Section */}
       <section id="contact" className="min-h-screen py-20 bg-slate-950/50 flex items-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -900,5 +902,6 @@ const [currentProject, setCurrentProject] = useState(0);
       
       `}</style>
     </div>
+    
   );
 }
