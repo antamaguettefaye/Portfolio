@@ -300,99 +300,115 @@ const [currentProject, setCurrentProject] = useState(0);
       </section>
 
       {/* About Section */}
+    {/* About Section */}
       <section id="about" className="min-h-screen py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl sm:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            À Propos de Moi
+          <h2 className="text-4xl sm:text-5xl font-bold text-center mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            À Propos
           </h2>
+          <p className="text-center text-gray-400 text-lg mb-16 max-w-3xl mx-auto">
+            Développeuse Full-Stack passionnée par l'innovation technologique et les systèmes IoT
+          </p>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-6">
-              <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-lg rounded-2xl p-8 border border-purple-500/20">
-                <h3 className="text-2xl font-bold mb-4 flex items-center space-x-2">
-                  <Sparkles className="text-purple-400" />
-                  <span>Profile</span>
-                </h3>
-                <p className="text-gray-300 leading-relaxed">
-                  Développeuse web full-stack polyvalente avec une expertise unique alliant développement logiciel et électronique. Diplômée de Simplon Sénégal en développement Full Stack & IoT, j'ai également un BTS en Électronique Industrielle.
-                </p>
-                <p className="text-gray-300 leading-relaxed mt-4">
-                  Mon approche combine créativité technique et rigueur professionnelle pour concevoir des solutions innovantes qui répondent aux besoins réels des utilisateurs.
-                </p>
+          {/* Profile Card */}
+          <div className="max-w-4xl mx-auto mb-12">
+            <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-lg rounded-2xl p-8 border border-purple-500/20">
+              <div className="flex items-start gap-4 mb-6">
+                <Sparkles className="text-purple-400 mt-1 flex-shrink-0" size={32} />
+                <div>
+                  <h3 className="text-2xl font-bold mb-4">Profil</h3>
+                  <p className="text-gray-300 text-base leading-relaxed">
+                    Expertise unique combinant développement web moderne et électronique. Diplômée de Simplon Sénégal (Full Stack & IoT) et titulaire d'un BTS en Électronique Industrielle. Je conçois des solutions innovantes alliant créativité technique et rigueur professionnelle.
+                  </p>
+                </div>
               </div>
+              
+              {/* Quick Contact */}
+              <div className="flex flex-wrap gap-4 pt-4 border-t border-purple-500/20">
+                <a href="mailto:antamaguettefaye@gmail.com" className="flex items-center gap-2 text-base text-gray-300 hover:text-purple-400 transition-colors">
+                  <Mail size={18} />
+                  <span className="hidden sm:inline">antamaguettefaye@gmail.com</span>
+                  <span className="sm:hidden">Email</span>
+                </a>
+                <a href="tel:+221782416550" className="flex items-center gap-2 text-base text-gray-300 hover:text-purple-400 transition-colors">
+                  <Phone size={18} />
+                  <span>+221 78 241 65 50</span>
+                </a>
+                <span className="flex items-center gap-2 text-base text-gray-300">
+                  <MapPin size={18} />
+                  <span>Dakar, Sénégal</span>
+                </span>
+              </div>
+            </div>
+          </div>
 
-              <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-lg rounded-2xl p-8 border border-purple-500/20">
-                <h3 className="text-2xl font-bold mb-4">Contact</h3>
-                <div className="space-y-3">
-                  <a href="tel:+221782416550" className="flex items-center space-x-3 text-gray-300 hover:text-purple-400 transition-colors">
-                    <Phone size={20} />
-                    <span>+221 78 241 65 50</span>
-                  </a>
-                  <a href="mailto:antamaguettefaye@gmail.com" className="flex items-center space-x-3 text-gray-300 hover:text-purple-400 transition-colors">
-                    <Mail size={20} />
-                    <span>antamaguettefaye@gmail.com</span>
-                  </a>
-                  <div className="flex items-center space-x-3 text-gray-300">
-                    <MapPin size={20} />
-                    <span>Dakar, Grand Yoff, Sénégal</span>
+          {/* Experience & Formation Grid */}
+          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* Expériences */}
+            <div className="bg-gradient-to-br from-purple-500/5 to-pink-500/5 backdrop-blur-lg rounded-2xl p-8 border border-purple-500/20">
+              <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                <div className="w-2 h-8 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full"></div>
+                Expériences
+              </h3>
+              <div className="space-y-6">
+                <div className="group hover:bg-purple-500/5 p-4 rounded-xl transition-all">
+                  <div className="flex justify-between items-start mb-2 flex-wrap gap-2">
+                    <h4 className="font-bold text-lg group-hover:text-purple-400 transition-colors">NORD-SUD Technology</h4>
+                    <span className="text-sm text-gray-400 bg-slate-800/50 px-3 py-1 rounded">2025</span>
                   </div>
-                  <a href="https://www.linkedin.com/in/anta-maguette-faye-10693b244/" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 text-gray-300 hover:text-purple-400 transition-colors">
-                    <Linkedin size={20} />
-                    <span>LinkedIn</span>
-                  </a>
-                  <a href="https://github.com/antamaguettefaye" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 text-gray-300 hover:text-purple-400 transition-colors">
-                    <Github size={20} />
-                    <span>GitHub</span>
-                  </a>
+                  <p className="text-purple-400 text-base font-semibold mb-2">Développeuse Full-Stack</p>
+                  <p className="text-gray-300 text-base leading-relaxed">Logiciel de facturation électronique • Intégration paiements • Agile/Scrum</p>
+                </div>
+
+                <div className="group hover:bg-pink-500/5 p-4 rounded-xl transition-all">
+                  <div className="flex justify-between items-start mb-2 flex-wrap gap-2">
+                    <h4 className="font-bold text-lg group-hover:text-pink-400 transition-colors">Simplon Sénégal</h4>
+                    <span className="text-sm text-gray-400 bg-slate-800/50 px-3 py-1 rounded">2024-25</span>
+                  </div>
+                  <p className="text-pink-400 text-base font-semibold mb-2">Développeuse Full-Stack</p>
+                  <p className="text-gray-300 text-base leading-relaxed">Projets Web & IoT • Gestion scolaire • Systèmes connectés</p>
+                </div>
+
+                <div className="group hover:bg-cyan-500/5 p-4 rounded-xl transition-all">
+                  <div className="flex justify-between items-start mb-2 flex-wrap gap-2">
+                    <h4 className="font-bold text-lg group-hover:text-cyan-400 transition-colors">Netsysteme Informatique</h4>
+                    <span className="text-sm text-gray-400 bg-slate-800/50 px-3 py-1 rounded">2023-24</span>
+                  </div>
+                  <p className="text-cyan-400 text-base font-semibold mb-2">Technicienne Sécurité</p>
+                  <p className="text-gray-300 text-base leading-relaxed">Installation & maintenance systèmes de surveillance</p>
                 </div>
               </div>
             </div>
 
-            <div className="space-y-6">
-              <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-lg rounded-2xl p-8 border border-purple-500/20">
-                <h3 className="text-2xl font-bold mb-6">Expériences</h3>
-                <div className="space-y-6">
-                  <div className="border-l-4 border-purple-500 pl-4">
-                    <h4 className="font-bold text-lg">Développeuse Full-Stack</h4>
-                    <p className="text-purple-400">NORD-SUD Technology</p>
-                    <p className="text-sm text-gray-400">Avril 2025 - À ce jour</p>
-                    <p className="text-gray-300 mt-2">Développement d'un logiciel de facturation électronique avec intégration de paiements (Orange Money, PayPal). Travail en équipe Agile/Scrum.</p>
+            {/* Formation */}
+            <div className="bg-gradient-to-br from-pink-500/5 to-purple-500/5 backdrop-blur-lg rounded-2xl p-8 border border-pink-500/20">
+              <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                <div className="w-2 h-8 bg-gradient-to-b from-pink-500 to-purple-500 rounded-full"></div>
+                Formation
+              </h3>
+              <div className="space-y-6">
+                <div className="group hover:bg-purple-500/5 p-4 rounded-xl transition-all">
+                  <div className="flex justify-between items-start mb-2 flex-wrap gap-2">
+                    <h4 className="font-bold text-lg group-hover:text-purple-400 transition-colors">Full Stack & IoT</h4>
+                    <span className="text-sm text-gray-400 bg-slate-800/50 px-3 py-1 rounded">2024-25</span>
                   </div>
-                  
-                  <div className="border-l-4 border-pink-500 pl-4">
-                    <h4 className="font-bold text-lg">Développeuse Full-Stack</h4>
-                    <p className="text-pink-400">Simplon Sénégal</p>
-                    <p className="text-sm text-gray-400">Juillet 2024 - Mars 2025</p>
-                    <p className="text-gray-300 mt-2">Développement de multiples projets web et IoT : gestion scolaire, système bancaire, arrosage intelligent, gestion des déchets.</p>
-                  </div>
-
-                  <div className="border-l-4 border-cyan-500 pl-4">
-                    <h4 className="font-bold text-lg">Technicienne Sécurité Électronique</h4>
-                    <p className="text-cyan-400">Netsysteme Informatique</p>
-                    <p className="text-sm text-gray-400">Décembre 2023 - Avril 2024</p>
-                    <p className="text-gray-300 mt-2">Installation, configuration et maintenance de systèmes de surveillance (caméras de sécurité).</p>
-                  </div>
+                  <p className="text-purple-400 text-base font-semibold">Simplon Sénégal</p>
                 </div>
-              </div>
 
-              <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-lg rounded-2xl p-8 border border-purple-500/20">
-                <h3 className="text-2xl font-bold mb-4">Formation</h3>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-bold">Développement Full Stack & IoT</h4>
-                    <p className="text-purple-400">Simplon Sénégal</p>
-                    <p className="text-sm text-gray-400">Juillet 2024 - Mars 2025</p>
+                <div className="group hover:bg-pink-500/5 p-4 rounded-xl transition-all">
+                  <div className="flex justify-between items-start mb-2 flex-wrap gap-2">
+                    <h4 className="font-bold text-lg group-hover:text-pink-400 transition-colors">BTS Électronique Industrielle</h4>
+                    <span className="text-sm text-gray-400 bg-slate-800/50 px-3 py-1 rounded">2022</span>
                   </div>
-                  <div>
-                    <h4 className="font-bold">BTS Électronique Industrielle</h4>
-                    <p className="text-pink-400">CEDT LE G15</p>
-                    <p className="text-sm text-gray-400">2022 - Mention Assez Bien</p>
+                  <p className="text-pink-400 text-base font-semibold">CEDT LE G15 • Mention Assez Bien</p>
+                </div>
+
+                <div className="group hover:bg-cyan-500/5 p-4 rounded-xl transition-all">
+                  <div className="flex justify-between items-start mb-2 flex-wrap gap-2">
+                    <h4 className="font-bold text-lg group-hover:text-cyan-400 transition-colors">Certificat Énergie Solaire</h4>
+                    <span className="text-sm text-gray-400 bg-slate-800/50 px-3 py-1 rounded">2024</span>
                   </div>
-                  <div>
-                    <h4 className="font-bold">Certificat en Énergie Solaire</h4>
-                    <p className="text-cyan-400">Sénégal-Japon</p>
-                    <p className="text-sm text-gray-400">2024</p>
-                  </div>
+                  <p className="text-cyan-400 text-base font-semibold">Programme Sénégal-Japon</p>
                 </div>
               </div>
             </div>
